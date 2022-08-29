@@ -26,7 +26,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,14 +60,20 @@ class MainActivity : ComponentActivity() {
 private fun listItem(name: String, prof: String) {
     var like = remember{ mutableStateOf(0) }
 
+    var color = remember{ mutableStateOf(Color.LightGray) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
             .offset(20.dp)
             .clickable {
-                like.value++
-                Log.d(TAG, "XXX listItem() $name called $like")
+                when(++like.value){
+                    10 -> color.value = Color.Magenta
+                    20 -> color.value = Color.Red
+
+                }
+                Log.d(TAG, "XXX listItem() $name called ${like.value}")
             },
         shape = RoundedCornerShape(15.dp),
         elevation = 7.dp
@@ -86,12 +96,27 @@ private fun listItem(name: String, prof: String) {
                     modifier = Modifier.padding(start = 12.dp)
                 ) {
 
-                    Text(text = name)
+                    Text(text = name, style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Italic))
                     Text(text = prof)
-                    Text(text = like.value.toString())
+                    Text(text = "Like " + like.value.toString())
 
                 }
+
+                Row (modifier = Modifier.fillMaxSize(),
+                ){
+                    Box(modifier = Modifier
+                        .size(30.dp)
+                        .background(color.value, shape = CircleShape),
+                        contentAlignment = Alignment.BottomEnd
+                    ){
+
+
+                    }
+                }
+
             }
+
+
         }
 
     }
