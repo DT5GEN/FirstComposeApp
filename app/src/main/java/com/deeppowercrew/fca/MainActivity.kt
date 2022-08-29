@@ -16,6 +16,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,6 +38,10 @@ class MainActivity : ComponentActivity() {
                 listItem(name = "Добромирчик", prof = " Умняшка ")
                 listItem(name = "Добромирчик", prof = " Умняшка ")
                 listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+
 
             }
 
@@ -48,18 +54,16 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun listItem(name: String, prof: String) {
+    var like = remember{ mutableStateOf(0) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .pointerInput(Unit) {
-                detectDragGesturesAfterLongPress { change, dragAmount ->
-                    Log.d(TAG, "YYY listItem() called with: change = $change, dragAmount = $dragAmount")
-                }
-            }
             .padding(10.dp)
             .offset(20.dp)
             .clickable {
-                Log.d(TAG, "XXX listItem() clicked")
+                like.value++
+                Log.d(TAG, "XXX listItem() $name called $like")
             },
         shape = RoundedCornerShape(15.dp),
         elevation = 7.dp
@@ -84,12 +88,14 @@ private fun listItem(name: String, prof: String) {
 
                     Text(text = name)
                     Text(text = prof)
+                    Text(text = like.value.toString())
 
                 }
             }
         }
 
     }
+
 }
 
 
