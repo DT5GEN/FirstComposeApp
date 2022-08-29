@@ -25,7 +25,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            listItem(name = "Добромирчик", prof = " Умняшка ")
+            Column() {
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+                listItem(name = "Добромирчик", prof = " Умняшка ")
+
+            }
 
 
         }
@@ -44,10 +51,8 @@ private fun listItem(name: String, prof: String) {
         elevation = 7.dp
 
     ) {
-        Box(modifier = Modifier.background(Color.Red),
-        contentAlignment = Alignment.Center) {
+        Box() {
             Row(
-                modifier = Modifier.background(Color.Green),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -59,7 +64,8 @@ private fun listItem(name: String, prof: String) {
                         .size(114.dp)
                         .clip(CircleShape)
                 )
-                Column(modifier = Modifier.background(Color.Magenta).padding(12.dp)
+                Column(
+                    modifier = Modifier.padding(start = 12.dp)
                 ) {
 
                     Text(text = name)
