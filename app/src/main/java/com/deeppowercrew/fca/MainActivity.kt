@@ -11,6 +11,8 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -36,15 +38,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
-                listItem(name = "Добромирчик", prof = " Умняшка ")
+
+            LazyColumn(
+
+                modifier = Modifier.fillMaxSize()
+                ) {
+                items(count = 150){
+                    listItem(name = "Добромирчик", prof = " Умняшeчка ")
+                }
+
+
+
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
 
 
             }
@@ -66,9 +78,8 @@ private fun listItem(name: String, prof: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
-            .offset(20.dp)
             .clickable {
-                when(++like.value){
+                when (++like.value) {
                     10 -> color.value = Color.Magenta
                     20 -> color.value = Color.Red
 
