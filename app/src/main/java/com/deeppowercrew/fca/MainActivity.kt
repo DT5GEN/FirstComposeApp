@@ -12,7 +12,9 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -39,99 +41,112 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            LazyColumn(
+            Box() {
+                Column() {
+                    LazyRow(
 
-                modifier = Modifier.fillMaxSize()
-                ) {
-                items(count = 150){
-                    listItem(name = "Добромирчик", prof = " Умняшeчка ")
-                }
-
-
-
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-//                listItem(name = "Добромирчик", prof = " Умняшка ")
-
-
-            }
-
-
-        }
-    }
-
-
-}
-
-@Composable
-private fun listItem(name: String, prof: String) {
-    var like = remember{ mutableStateOf(0) }
-
-    var color = remember{ mutableStateOf(Color.LightGray) }
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .clickable {
-                when (++like.value) {
-                    10 -> color.value = Color.Magenta
-                    20 -> color.value = Color.Red
-
-                }
-                Log.d(TAG, "XXX listItem() $name called ${like.value}")
-            },
-        shape = RoundedCornerShape(15.dp),
-        elevation = 7.dp
-
-    ) {
-        Box() {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.photo),
-                    contentDescription = "Example",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(114.dp)
-                        .clip(CircleShape)
-                )
-                Column(
-                    modifier = Modifier.padding(start = 12.dp)
-                ) {
-
-                    Text(text = name, style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Italic))
-                    Text(text = prof)
-                    Text(text = "Like " + like.value.toString())
-
-                }
-
-                Row (modifier = Modifier.fillMaxSize(),
-                ){
-                    Box(modifier = Modifier
-                        .size(30.dp)
-                        .background(color.value, shape = CircleShape),
-                        contentAlignment = Alignment.BottomEnd
-                    ){
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        itemsIndexed(listOf("111", "222", "333", "444", "555")) { index, item ->
+                            listItem(name = "Добромирчик", prof = " Умняшка $index $item ")
+                            Text(text = item)
+                        }
 
 
                     }
+
                 }
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+//                listItem(name = "Добромирчик", prof = " Умняшка ")
+
+
+
+
 
             }
 
+        }
+
+
+    }
+
+    @Composable
+    private fun listItem(name: String, prof: String) {
+        var like = remember { mutableStateOf(0) }
+
+        var color = remember { mutableStateOf(Color.LightGray) }
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .clickable {
+                    when (++like.value) {
+                        10 -> color.value = Color.Magenta
+                        20 -> color.value = Color.Red
+
+                    }
+                    Log.d(TAG, "XXX listItem() $name called ${like.value}")
+                },
+            shape = RoundedCornerShape(15.dp),
+            elevation = 7.dp
+
+        ) {
+            Box() {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.photo),
+                        contentDescription = "Example",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .size(114.dp)
+                            .clip(CircleShape)
+                    )
+                    Column(
+                        modifier = Modifier.padding(start = 12.dp)
+                    ) {
+
+                        Text(
+                            text = name,
+                            style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Italic)
+                        )
+                        Text(text = prof)
+                        Text(text = "Like " + like.value.toString())
+
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .background(color.value, shape = CircleShape),
+                            contentAlignment = Alignment.BottomEnd
+                        ) {
+
+
+                        }
+                    }
+
+                }
+
+
+            }
 
         }
 
     }
-
 }
 
 
