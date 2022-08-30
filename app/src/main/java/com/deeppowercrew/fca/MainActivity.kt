@@ -45,12 +45,15 @@ class MainActivity : ComponentActivity() {
                 Column() {
                     LazyRow(
 
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        itemsIndexed(listOf("111", "222", "333", "444", "555")) { index, item ->
+                        itemsIndexed(listOf(
+                            ItemRowModel(R.drawable.photo, " Добро ")
+                        )) { index, item ->
+                            MyItemRow(item = item)
                             listItem(name = "Добромирчик", prof = " Умняшка $index $item ")
-                            Text(text = item)
+                            
                         }
 
 
