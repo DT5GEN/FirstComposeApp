@@ -1,19 +1,15 @@
 package com.deeppowercrew.fca
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,12 +22,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,12 +38,24 @@ class MainActivity : ComponentActivity() {
                 Column() {
                     LazyRow(
 
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.LightGray),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        itemsIndexed(listOf("111", "222", "333", "444", "555")) { index, item ->
-                            listItem(name = "Добромирчик", prof = " Умняшка $index $item ")
-                            Text(text = item)
+                        itemsIndexed(
+                            listOf(
+                                ItemRowModel(R.drawable.photo, " Добромирчик "),
+                                ItemRowModel(R.drawable.photo1, " Мамамирчик "),
+                                ItemRowModel(R.drawable.photo2, " Багдамирчик "),
+                                ItemRowModel(R.drawable.photo3, " Яромирчик "),
+                                ItemRowModel(R.drawable.photo4, " Танямирчик ")
+                            )
+                        ) { _, item ->
+                            myItemRow(item = item)
+                            //   listItem(name = "Добромирчик", prof = " Умняшка ")
+
+
                         }
 
 
@@ -65,9 +70,6 @@ class MainActivity : ComponentActivity() {
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
-
-
-
 
 
             }
@@ -126,7 +128,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Row(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Box(
                             modifier = Modifier
