@@ -14,23 +14,27 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun MyItemRow(item: ItemRowModel) {
+fun myItemRow(item: ItemRowModel) {
 
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .background(Color.White)
             .padding(5.dp)
+            .background(Color.White)
             ) {
-        Image(painter = painterResource(id = item.imageId), contentDescription = "Image",
+        Image(painter = painterResource(id = item.imageId), contentDescription = "image",
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .padding(5.dp)
-            .size(120.dp)
+            .size(180.dp)
             .clip(CircleShape))
-Text(text =item.title )
+Text(text =item.title,
+    style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic))
     }
 }
