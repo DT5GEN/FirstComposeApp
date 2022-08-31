@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -36,21 +38,24 @@ class MainActivity : ComponentActivity() {
                 Column() {
                     LazyRow(
 
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .background(Color.LightGray),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        itemsIndexed(listOf(
-                            ItemRowModel(R.drawable.photo, " Добромирчик "),
-                            ItemRowModel(R.drawable.photo1, " Мамамирчик "),
-                            ItemRowModel(R.drawable.photo2, " Багдамирчик "),
-                            ItemRowModel(R.drawable.photo3, " Яромирчик "),
-                            ItemRowModel(R.drawable.photo4, " Танямирчик ")
-                        )) { _, item ->
+                        itemsIndexed(
+                            listOf(
+                                ItemRowModel(R.drawable.photo, " Добромирчик "),
+                                ItemRowModel(R.drawable.photo1, " Мамамирчик "),
+                                ItemRowModel(R.drawable.photo2, " Багдамирчик "),
+                                ItemRowModel(R.drawable.photo3, " Яромирчик "),
+                                ItemRowModel(R.drawable.photo4, " Танямирчик ")
+                            )
+                        ) { _, item ->
                             myItemRow(item = item)
-                                //   listItem(name = "Добромирчик", prof = " Умняшка ")
+                            //   listItem(name = "Добромирчик", prof = " Умняшка ")
 
-                            
+
                         }
 
 
@@ -65,9 +70,6 @@ class MainActivity : ComponentActivity() {
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
 //                listItem(name = "Добромирчик", prof = " Умняшка ")
-
-
-
 
 
             }

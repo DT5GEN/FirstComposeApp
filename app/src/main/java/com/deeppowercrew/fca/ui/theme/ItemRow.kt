@@ -22,19 +22,23 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun myItemRow(item: ItemRowModel) {
 
-    Column (
+    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(5.dp)
             .background(Color.White)
-            ) {
-        Image(painter = painterResource(id = item.imageId), contentDescription = "image",
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .padding(5.dp)
-            .size(180.dp)
-            .clip(CircleShape))
-Text(text =item.title,
-    style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic))
+    ) {
+        Image(
+            painter = painterResource(id = item.imageId), contentDescription = "image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .padding(5.dp)
+                .size(180.dp)
+                .clip(CircleShape)
+        )
+        Text(
+            text = item.title,
+            style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic)
+        )
     }
 }
