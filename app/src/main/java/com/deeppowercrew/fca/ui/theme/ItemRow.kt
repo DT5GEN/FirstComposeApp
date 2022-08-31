@@ -2,13 +2,11 @@ package com.deeppowercrew.fca
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -21,11 +19,15 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun myItemRow(item: ItemRowModel) {
+    var isExpanded by remember {
+        mutableStateOf(false)
+    }
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Row(
+
         modifier = Modifier
             .padding(5.dp)
+            .fillMaxWidth()
             .background(Color.White)
     ) {
         Image(
@@ -36,9 +38,22 @@ fun myItemRow(item: ItemRowModel) {
                 .size(180.dp)
                 .clip(CircleShape)
         )
-        Text(
-            text = item.title,
-            style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic)
-        )
+        Column(
+            modifier = Modifier
+                .padding(start = 12.dp, top = 5.dp)
+        ) {
+            Text(
+                text = item.title,
+                style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic)
+            )
+
+            Text(
+                modifier = Modifier.clickable { isExpanded = !isExpanded },
+                maxLines = if (isExpanded) Int.MAX_VALUE else 1,
+                text = item.content,
+                style = TextStyle(fontSize = 16.sp, fontStyle = FontStyle.Normal)
+            )
+        }
+
     }
 }
