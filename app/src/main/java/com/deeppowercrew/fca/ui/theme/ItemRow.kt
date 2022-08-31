@@ -2,9 +2,7 @@ package com.deeppowercrew.fca
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,10 +20,11 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun myItemRow(item: ItemRowModel) {
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Row(
+
         modifier = Modifier
             .padding(5.dp)
+            .fillMaxWidth()
             .background(Color.White)
     ) {
         Image(
@@ -36,9 +35,18 @@ fun myItemRow(item: ItemRowModel) {
                 .size(180.dp)
                 .clip(CircleShape)
         )
-        Text(
-            text = item.title,
-            style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic)
-        )
+        Column(modifier = Modifier
+            .padding(start = 12.dp, top = 5.dp)) {
+            Text(
+                text = item.title,
+                style = TextStyle(fontSize = 25.sp, fontStyle = FontStyle.Italic)
+            )
+
+            Text(
+                text = item.content,
+                style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Normal)
+            )
+        }
+
     }
 }
